@@ -17,22 +17,25 @@ async def on_ready():
 @bot.command(name='move')
 async def move(ctx, user_id: int, ch_id_1: int, ch_id_2: int):
     global user_id_to_move, channel_id_1, channel_id_2, move_task
+    if ctx.author.guild_permissions.manage_messages:
     
-    user_id_to_move = user_id
-    channel_id_1 = ch_id_1
-    channel_id_2 = ch_id_2
+        user_id_to_move = user_id
+        channel_id_1 = ch_id_1
+        channel_id_2 = ch_id_2
 
-    member = ctx.guild.get_member(user_id)
+        member = ctx.guild.get_member(user_id)
     
-    if member is None:
-        await ctx.send(f'User with ID {user_id} not found.')
-        return
+        if member is None:
+            await ctx.send(f'User with ID {user_id} not found.')
+            return
 
-    if move_task is not None:
-        move_task.cancel()
+        if move_task is not None:
+            move_task.cancel()
     
-    move_task = bot.loop.create_task(move_member_loop(ctx.guild, member))
-    await ctx.send(f'Started moving {member.display_name} between channels {channel_id_1} and {channel_id_2}', delete_after=5)
+        move_task = bot.loop.create_task(move_member_loop(ctx.guild, member))
+        await ctx.send(f'Started moving {member.display_name} between channels {channel_id_1} and {channel_id_2}', delete_after=5)
+    else:
+        await ctx.send(f'```\nYou do not have permission to use this command\n```', delete_after=5)
     
 
 async def move_member_loop(guild, member):
