@@ -4,5 +4,9 @@ Simple discord code bot in python with the feature of moving members from voich 
 
 ---
 
-> How to use :
-```!move <user id that u want move> <channel id 1> <channel id 2>```
+> HOW TO USE : </br>
+```
+1. pip install discord.py
+2. enter discord bot TOKEN
+3. !move <user id that u want move> <channel id 1> <channel id 2>
+```
