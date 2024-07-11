@@ -10,3 +10,5 @@ Simple discord code bot in python with the feature of moving members from voich 
 2. enter discord bot TOKEN
 3. !move <user id that u want move> <channel id 1> <channel id 2>
 ```
+
+# DON'T FORGET TO STAR THIS REPOS :)
